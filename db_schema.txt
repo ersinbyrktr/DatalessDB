@@ -1,0 +1,8 @@
+create table customer(cust_key integer primary key, name text, address char(40), nation_key integer, phone text, acct_bal int, mkt_segment text, comment text);
+create table nation(nation_key integer primary key, name text, region_key integer, comment text);
+create table region(region_key integer primary key, name text, comment text);
+create table supplier(supp_key integer primary key, name text, address char(40), nation_key integer, phone text, acct_bal int, comment text);
+create table part(part_key integer primary key, name text, mfgr text, brand text, type text, size int, container text, retail_price int, comment text);
+create table part_supp(part_key integer, supp_key integer, avail_qty int, supply_cost int, comment text, primary key(part_key, supp_key));
+create table "order"(order_key integer, cust_key integer, order_status text, total_price int, order_date date, order_priority text, clerk text, ship_priority int, comment text, primary key(order_key));
+create table lineitem(order_key integer, part_key integer, supp_key integer, line_number int, quantity int, extended_price double, discount double, tax double, return_flag text, line_status text, ship_date date, commit_date date, receipt_date date, ship_instruct text, ship_mode text, comment text, primary key(order_key, line_number));
